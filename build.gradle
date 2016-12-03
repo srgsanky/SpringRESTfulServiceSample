@@ -1,0 +1,36 @@
+group 'com.sanka'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'war' // Required for deploying the application to an external Tomcat instance
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'gs-rest-service'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat' // Required for deploying the application to an external Tomcat instance
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
